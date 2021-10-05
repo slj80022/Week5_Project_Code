@@ -4,6 +4,8 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
+from matplotlib.colors import LinearSegmentedColormap
+matplotlib.style.use('ggplot')
 output_dir = r'C:\\Users\\sally\\School\\Week5'
 df3 = pd.read_csv('crime2.csv')
 crime3= pd.DataFrame(df3)
@@ -32,13 +34,11 @@ graphRapes = plt.bar(x = crime3.Year, height = crime3.Rapes, width = 0.35, botto
 graphRobberies = plt.bar(x=crime3.Year, height = crime3.Robberies, width = 0.35, bottom = crime3.Auto_thefts+crime3.Burglaries+crime3.Murders+crime3.Rapes+crime3.Robberies)
 graphAssaults = plt.bar(x = crime3.Year, height = crime3.Assaults, width = 0.35, bottom = crime3.Auto_thefts+crime3.Burglaries+crime3.Murders+crime3.Rapes+crime3.Robberies+crime3.Assaults)
 graphArson = plt.bar(x = crime3.Year, height = crime3.Arson, width = 0.35, bottom = crime3.Auto_thefts+crime3.Burglaries+crime3.Murders+crime3.Rapes+crime3.Robberies+crime3.Assaults+crime3.Arson)
-
 crime3 = crime3.set_index('Year')
 plt.xlabel('Year')
 plt.ylabel('Number of Crimes Committed')
 plt.title('Crimes in Denver (2001-2013)')
 plt.legend(loc=1, fontsize = 'medium')
-df.plot(kind='bar', stacked=True, colormap=cmap1)
-
-
-plt.savefig('crimeBarplot.png')
+crime3.plot(kind='bar', stacked=True, colormap=cmap1)
+plt.ylabel('Total Crimes Committed')
+plt.savefig('crimeBarplot2.png')
